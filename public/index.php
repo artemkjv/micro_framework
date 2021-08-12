@@ -1,8 +1,8 @@
 <?php
 
-use Laminas\Diactoros\Response\HtmlResponse;
+use Framework\Http\Router\RouteCollection;
+use Framework\Http\Router\Router;
 use Laminas\Diactoros\ServerRequestFactory;
-use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 
 chdir(dirname(__DIR__));
 
@@ -12,14 +12,10 @@ require 'vendor/autoload.php';
 
 $request = ServerRequestFactory::fromGlobals();
 
+$routes = new RouteCollection();
+$router = new Router($routes);
+
 ### Action
 
-$name = $request->getQueryParams()['name'] ?? 'Guest';
-$body = 'Hello, ' . $name . '!';
-$response = (new HtmlResponse($body))
-        ->withHeader('X-Developer', 'artemkjv');
+$result = $router->match($request);
 
-### Sending
-
-$emitter = new SapiEmitter();
-$emitter->emit($response);

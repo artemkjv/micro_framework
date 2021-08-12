@@ -9,7 +9,8 @@
         "psr/http-message": "dev-master",
         "roave/security-advisories": "dev-master",
         "laminas/laminas-diactoros": "2.7.x-dev",
-        "laminas/laminas-httphandlerrunner": "2.1.x-dev"
+        "laminas/laminas-httphandlerrunner": "2.1.x-dev",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
